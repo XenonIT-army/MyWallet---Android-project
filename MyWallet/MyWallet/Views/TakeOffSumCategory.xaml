@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyWallet.Views.TakeOffSumCategory"
+                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup">
+
+
+
+    <StackLayout Margin="12"
+                 Padding="24"
+                 BackgroundColor="White"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center">
+        <Label HorizontalTextAlignment="Center" FontSize="Title" Text="Снять сумму с выбранной категории?"></Label>
+        <Editor Visual="Material" Keyboard="Numeric"    HorizontalOptions="Center" Placeholder="Введите сумму" Text="{Binding TakeOffSum, Mode=TwoWay}"></Editor>
+        <Label Text="Введенное значение не может быть отрицательным!" TextColor="Red" IsVisible="{Binding Visible}"></Label>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" BackgroundColor="DodgerBlue" Margin="0,0,10,0" Command="{Binding TakeOffCategoryCommand}"
+                FontSize="Subtitle"
+                Text="Принять"
+                TextColor="White" />
+            <Button Grid.Column="1" BackgroundColor="DodgerBlue"  Margin="10,0,0,0" Command="{Binding CloseBoxMesage}"
+                FontSize="Subtitle"
+                Text="Отмена"
+                TextColor="White" />
+        </Grid>
+    </StackLayout>
+
+
+</pages:PopupPage>
