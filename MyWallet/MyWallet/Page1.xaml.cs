@@ -1,4 +1,6 @@
-﻿using MyWallet.ViewModel;
+﻿using MyWallet.Moduls;
+using MyWallet.ViewModel;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +18,7 @@ namespace MyWallet
         public Page1()
         {
             InitializeComponent();
-            BindingContext = new MainViewModel();
+            BindingContext  = App.Container.Get<MainViewModel>();
             var pages = Children.GetEnumerator();
             pages.MoveNext();
             pages.MoveNext();
@@ -24,9 +26,6 @@ namespace MyWallet
             
         }
 
-        private void Stepper_ValueChanged(object sender, ValueChangedEventArgs e)
-        {
-            
-        }
+       
     }
 }

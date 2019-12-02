@@ -1,4 +1,5 @@
 ﻿using MyWallet.Infrastructure;
+using MyWallet.Interface;
 using MyWallet.Model;
 using MyWallet.Views;
 using Rg.Plugins.Popup.Services;
@@ -14,15 +15,19 @@ namespace MyWallet.ViewModel
 {
     public class MainViewModel : Notifier
     {
-
+        public IService<PaymentCategories> paymentService;
         ObservableCollection<PaymentCategories> payments = new ObservableCollection<PaymentCategories>();
         ObservableCollection<PaymentCategories> editPayments = new ObservableCollection<PaymentCategories>();
-        PaymentCategories categories = new PaymentCategories();
+        Сalculations categories = new Сalculations();
 
-        public MainViewModel()
+        public MainViewModel(IService<PaymentCategories> paymentService)
         {
-            Payments = categories.GetPayments();
-            EditPayments = categories.GetPayments();
+            this.paymentService = paymentService;
+            Payments = paymentService.GetAll().ToObservableCollection();
+            EditPayments = paymentService.GetAll().ToObservableCollection();
+
+           
+
             AllMonney = categories.GetAllMonney(payments);
             AllPercent = (100 - categories.GetPercent()).ToString();
 
@@ -33,11 +38,22 @@ namespace MyWallet.ViewModel
                 if (Convert.ToInt32(AllMonney) + Convert.ToInt32(AddSum) >= 0)
                 {
                     AllMonney = (Convert.ToInt32(AllMonney) + Convert.ToInt32(AddSum)).ToString();
-                    Payments = categories.RefreshBalance(payments, AddSum); AddSum = null;
+                    Payments = categories.RefreshBalance(payments, AddSum); 
+                    AddSum = null;
+
+                    foreach(var res in Payments)
+                    {
+                        paymentService.Delete(res);
+                        paymentService.Create(res);
+                    }
+                    paymentService.Save();
+                    
                     Visible = false;
                     CloseBox();
                 }
                 else { Visible = true; }
+
+               
             });
 
             OpenEditCategorysBox = new Command(() => { OpenEditBox(); });
@@ -47,16 +63,19 @@ namespace MyWallet.ViewModel
             OpenSaveBoxCommand = new Command(() =>
             {
                 AllPercent = categories.RefreshCategorys(EditPayments).ToString();
-                if (AllPercent != "0")
-                {
-                    Visible = true;
-                    IsEnabled = false;
-                }
+                //if (AllPercent != "0")
+                //{
+                    //Visible = true;
+                    //IsEnabled = false;
+                //}
                 OpenSaveBox();
 
             });
             OpenTakeOffBoxCommand = new Command(() => { OpenTakeOffBox(); });
             TakeOffCategoryCommand = new Command(() => { TakeOffCategory(); AllMonney = categories.GetAllMonney(payments); });
+            DeleteCategoryCommand = new Command(() => { DeleteCategory(); });
+            OpenAddCategoryCommand = new Command(() => { OpenAddCategory(); });
+            AddCategoryCommand = new Command(() => { AddCategory(); CloseBox(); });
         }
         public ICommand OpenBoxCommand { private set; get; }
         public ICommand OpenEditCategorysBox { private set; get; }
@@ -76,6 +95,12 @@ namespace MyWallet.ViewModel
         public ICommand CloseSaveBoxCommand { private set; get; }
 
         public ICommand TakeOffCategoryCommand { private set; get; }
+
+        public ICommand DeleteCategoryCommand { private set; get; }
+
+        public ICommand OpenAddCategoryCommand { private set; get; }
+
+        public ICommand AddCategoryCommand { private set; get; }
         public string Name { get; set; } = "Maks";
         public string Path { get; set; } = "file_add.png";
 
@@ -97,7 +122,20 @@ namespace MyWallet.ViewModel
                     }
                 }
             }
-          
+           foreach(var res in Payments)
+            {
+                paymentService.Delete(res);
+                paymentService.Save();
+
+
+            }
+
+            foreach (var res in Payments)
+            {
+                paymentService.Create(res);
+
+            }
+            paymentService.Save();
 
         }
 
@@ -105,11 +143,38 @@ namespace MyWallet.ViewModel
         {
             PopupNavigation.Instance.PushAsync(new TakeOffSumCategory(this));
         }
+
+        private void OpenAddCategory()
+        {
+            PopupNavigation.Instance.PushAsync(new AddCategory(this));
+        }
+
+        private void AddCategory()
+        {
+            PaymentCategories add = new PaymentCategories();
+            add.Name = NameCategory;
+            add.Balance = "0";
+            add.Percent = "0";
+            Payments.Add(add);
+            EditPayments.Add(add);
+
+            paymentService.Create(add);
+            paymentService.Save();
+            Payments = paymentService.GetAll().ToObservableCollection();
+            EditPayments = paymentService.GetAll().ToObservableCollection();
+            NameCategory = "";
+        }
         private void OpenSaveBox()
         {
             PopupNavigation.Instance.PushAsync(new SaveProces(this));
         }
-
+        private void DeleteCategory()
+        {
+            EditPayments.Remove(TakeOff);
+            Payments.Remove(TakeOff);
+            paymentService.Delete(TakeOff);
+            paymentService.Save();
+        }
 
         private void OpenEditBox()
         {
@@ -129,9 +194,15 @@ namespace MyWallet.ViewModel
                     if (res.Name == TakeOff.Name)
                     {
                         res.Balance = TakeOff.Balance;
+                        paymentService.Delete(res);
+                        paymentService.Save();
+                        paymentService.Create(res);
+                        paymentService.Save();
                     }
                 }
+                TakeOffSum = "";
                 CloseBox();
+                
             }
             else
             {
@@ -275,7 +346,7 @@ namespace MyWallet.ViewModel
             }
         }
 
-
+       
 
         public string takeOffSum;
         public string TakeOffSum
@@ -290,6 +361,18 @@ namespace MyWallet.ViewModel
                 }
             }
         }
-
+        public string nameCategory;
+        public string NameCategory
+        {
+            get => nameCategory;
+            set
+            {
+                if (value != nameCategory)
+                {
+                    nameCategory = value;
+                    Notify();
+                }
+            }
+        }
     }
 }

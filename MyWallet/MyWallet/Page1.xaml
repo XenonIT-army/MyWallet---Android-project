@@ -34,11 +34,13 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Image Grid.Column="0"  Source="WhiteCircle.png" ></Image>
                 <Image Grid.Column="1" Source="WhiteCircle.png" Opacity="0.5" ></Image>
                 <Image Grid.Column="2"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
+                <Image Grid.Column="3"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
 
 
             </Grid>
@@ -128,11 +130,13 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Image Grid.Column="0"  Source="WhiteCircle.png" Opacity="0.5"></Image>
                 <Image Grid.Column="1" Source="WhiteCircle.png" ></Image>
                 <Image Grid.Column="2"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
+                <Image Grid.Column="3"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
 
             </Grid>
 
@@ -202,11 +206,13 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Image Grid.Column="0"  Source="WhiteCircle.png" Opacity="0.5"></Image>
                 <Image Grid.Column="1" Source="WhiteCircle.png" Opacity="0.5"></Image>
                 <Image Grid.Column="2"  Source="WhiteCircle.png"></Image>
+                <Image Grid.Column="3" Source="WhiteCircle.png" Opacity="0.5"></Image>
 
             </Grid>
 
@@ -298,7 +304,7 @@
 
                                                         <Label Grid.Column="1" HorizontalOptions="Center" FontSize="Title" HorizontalTextAlignment="Start" Text="{Binding Percent,Mode=TwoWay}" TextColor="White"></Label>
                                                         
-                                                        <Stepper   Visual="Material" Grid.Column="0"  Minimum="0"   ValueChanged="Stepper_ValueChanged"
+                                                        <Stepper   Visual="Material" Grid.Column="0"  Minimum="0"   
                                                                    Increment="1" Value="{Binding Percent,Mode=TwoWay}"></Stepper>
                                                     </Grid>
                                                 </Grid>
@@ -320,5 +326,89 @@
 
 
         </Grid>
+    </ContentPage>
+
+    <ContentPage Visual="Material" BackgroundColor="Brown">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="76*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                    <ColumnDefinition Width="80*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" BorderWidth="1"  Visual="Material" BackgroundColor="Brown" Margin="10" 
+                          CornerRadius="100"   ImageSource="WhiteCircle.png" Command="{Binding OpenAddCategoryCommand}" ></Button>
+                <Label VerticalOptions="Center" Grid.Column="1" FontSize="Title" TextColor="White" Text="Добавь новую категорию или удали не нужную!"></Label>
+
+
+            </Grid>
+
+            <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="3"  Source="WhiteCircle.png" ></Image>
+                <Image Grid.Column="0" Source="WhiteCircle.png" Opacity="0.5" ></Image>
+                <Image Grid.Column="1"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
+                <Image Grid.Column="2"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
+
+
+            </Grid>
+
+            <ListView x:Name="ListView2" Visual="Material" HorizontalScrollBarVisibility="Always" SelectedItem ="{Binding TakeOff,Mode=TwoWay}"  HasUnevenRows="true"  Grid.Row="2" ItemsSource="{Binding Payments}" Margin="10"  >
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <ViewCell >
+                            <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
+
+                                <Frame.Content>
+                                    <Frame   OutlineColor="Gray" BackgroundColor="BlueViolet" >
+                                        <Frame.Content>
+                                            <Grid>
+
+
+
+                                                <Grid >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"></RowDefinition>
+                                                        <RowDefinition Height="auto"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="White" FontSize="Title"></Label>
+                                                    <StackLayout Grid.Row="1" IsVisible="{Binding IsVisible}">
+                                                        <Button  BindingContext="{Binding Source={x:Reference ListView2}, Path=BindingContext}"  
+                                                         Command="{Binding DeleteCategoryCommand }" Text="Delete category"
+                                                             >
+                                                        </Button>
+                                                    </StackLayout>
+                                                </Grid>
+
+                                            </Grid>
+                                        </Frame.Content>
+
+                                    </Frame>
+                                </Frame.Content>
+
+
+                            </Frame>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
+
     </ContentPage>
 </CarouselPage>
