@@ -20,6 +20,10 @@ namespace MyWallet.Moduls
         {
             Bind<IRepository<Payment>>().To<PaymentRepository>();
             Bind<IService<PaymentCategories>>().To<PaymentService>();
+
+            Bind<IRepository<PurchaseHistory>>().To<HitoryRepository>();
+            Bind<IService<History>>().To<HitoryService>();
+
             Bind<DbContext>().To<MobileContext>();
         }
     }

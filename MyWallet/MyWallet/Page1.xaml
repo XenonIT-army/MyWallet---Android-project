@@ -9,7 +9,6 @@
               >
 
     <ContentPage Visual="Material" BackgroundColor="Brown">
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"></RowDefinition>

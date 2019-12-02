@@ -14,7 +14,7 @@
                  HorizontalOptions="Center"
                  VerticalOptions="Center">
         <Label HorizontalOptions="Center" FontSize="Title" Text="Создать категорию!"></Label>
-        <Editor Visual="Material" Text="{Binding NameCategory,Mode=TwoWay}" HorizontalOptions="Center" Placeholder="Введите сумму"></Editor>
+        <Editor Visual="Material" Text="{Binding NameCategory,Mode=TwoWay}" HorizontalOptions="Center" Placeholder="Введите название"></Editor>
 
         <Grid>
             <Grid.ColumnDefinitions>

@@ -16,17 +16,19 @@ namespace MyWallet.ViewModel
     public class MainViewModel : Notifier
     {
         public IService<PaymentCategories> paymentService;
+        public IService<History> historyService;
         ObservableCollection<PaymentCategories> payments = new ObservableCollection<PaymentCategories>();
         ObservableCollection<PaymentCategories> editPayments = new ObservableCollection<PaymentCategories>();
+        History historyPayments = new History();
         Сalculations categories = new Сalculations();
 
-        public MainViewModel(IService<PaymentCategories> paymentService)
+        public MainViewModel(IService<PaymentCategories> paymentService, IService<History> historyService)
         {
             this.paymentService = paymentService;
+            this.historyService = historyService;
             Payments = paymentService.GetAll().ToObservableCollection();
             EditPayments = paymentService.GetAll().ToObservableCollection();
 
-           
 
             AllMonney = categories.GetAllMonney(payments);
             AllPercent = (100 - categories.GetPercent()).ToString();
@@ -170,10 +172,11 @@ namespace MyWallet.ViewModel
         }
         private void DeleteCategory()
         {
-            EditPayments.Remove(TakeOff);
-            Payments.Remove(TakeOff);
+          
             paymentService.Delete(TakeOff);
             paymentService.Save();
+            Payments = paymentService.GetAll().ToObservableCollection();
+            EditPayments = paymentService.GetAll().ToObservableCollection();
         }
 
         private void OpenEditBox()
@@ -198,6 +201,9 @@ namespace MyWallet.ViewModel
                         paymentService.Save();
                         paymentService.Create(res);
                         paymentService.Save();
+                        AddHisstory();
+                        historyService.Create(historyPayments);
+                        historyService.Save();
                     }
                 }
                 TakeOffSum = "";
@@ -216,11 +222,14 @@ namespace MyWallet.ViewModel
             PopupNavigation.Instance.PopAsync();
         }
 
+        private void AddHisstory()
+        {
+            historyPayments.Name = TakeOff.Name;
+            historyPayments.Sum = TakeOffSum;
+            historyPayments.Date = DateTime.Now;
+        }
 
-
-
-
-
+        
         public ObservableCollection<PaymentCategories> Payments
         {
             get => payments;

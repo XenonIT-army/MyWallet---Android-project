@@ -5,13 +5,67 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MyWallet.Page2"
+             BackgroundColor="Gray"
              >
     
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Maks"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"></RowDefinition>
+                    <RowDefinition Height="90*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60*"></ColumnDefinition>
+                        <ColumnDefinition Width="40*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="История Расходов" Grid.Column="0" TextColor="White" FontSize="Title"></Label>
+                    <Button Visual="Material" Grid.Column="1" Text="Очистить" Command="{Binding RemoveHistory}" Margin="5"></Button>
+                </Grid>
+            
+            
+            
+            <ListView  BackgroundColor="Gray" Grid.Row="1" RefreshCommand="{Binding RefreshData}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefresh}"  Visual="Material" HorizontalScrollBarVisibility="Always"   HasUnevenRows="true"   ItemsSource="{Binding Histories,Mode=TwoWay}" Margin="10"  >
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <ViewCell >
+                            <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
+
+                                <Frame.Content>
+                                    <Frame   OutlineColor="Gray" BackgroundColor="BlueViolet" >
+                                        <Frame.Content>
+                                            <Grid>
+
+
+
+                                                <Grid >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"></RowDefinition>
+                                                        <RowDefinition Height="auto"></RowDefinition>
+                                                        <RowDefinition Height="auto"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="White" FontSize="Title"></Label>
+                                                    <Label Grid.Row="1" HorizontalTextAlignment="Center" Text="{Binding Sum}" TextColor="White" FontSize="Title"></Label>
+                                                    <Label Grid.Row="2" HorizontalTextAlignment="Center" Text="{Binding Date}" TextColor="White" FontSize="Title"></Label>
+                                                </Grid>
+
+                                            </Grid>
+                                        </Frame.Content>
+
+                                    </Frame>
+                                </Frame.Content>
+
+
+                            </Frame>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

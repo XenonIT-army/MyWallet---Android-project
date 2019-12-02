@@ -11,11 +11,12 @@ namespace SqlliteApp.Standard.UnitOfWork
     public class PaymentUnitOfWork : BaseUnitOfWork
     {
         public IRepository<Payment> PaymentRepository { get; }
-
+        public IRepository<PurchaseHistory> PurchaseHistory { get; }
         public PaymentUnitOfWork(DbContext db,
-                                 IRepository<Payment> paymentRepository) : base(db)
+                                 IRepository<Payment> paymentRepository, IRepository<PurchaseHistory> purchaseHistory) : base(db)
         {
             this.PaymentRepository = paymentRepository;
+            this.PurchaseHistory = purchaseHistory;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SqlliteApp.Standard.Context
     {
         public DbSet<Payment> Payment { get; set; }
 
-        //public DbSet<PurchaseHistory> PurchaseHistory { get; set; }
+        public DbSet<PurchaseHistory> History { get; set; }
         public MobileContext()
         {
             Database.EnsureCreated();
@@ -25,24 +25,6 @@ namespace SqlliteApp.Standard.Context
             optionsBuilder.EnableSensitiveDataLogging().UseSqlite($"Filename={dbPath}");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            //modelBuilder.Entity<Payment>()
-            //    .HasKey(e => new { e.Id ,e.Balance,e.Name,e.Percent});
-
-            //modelBuilder.Entity<Payment>()
-            //    .Property(e => e.Name)
-            //    .IsUnicode(false);
-
-            //modelBuilder.Entity<Payment>()
-            //    .Property(e => e.Balance)
-            //    .IsUnicode(false);
-
-            //modelBuilder.Entity<Payment>()
-            //    .Property(e => e.Percent)
-            //    .IsUnicode(false);
-
-
-        }
+       
     }
 }

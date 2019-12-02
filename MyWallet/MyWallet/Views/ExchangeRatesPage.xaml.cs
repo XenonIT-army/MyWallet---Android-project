@@ -1,6 +1,4 @@
-﻿using MyWallet.ViewModel;
-using Ninject;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,16 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MyWallet
+namespace MyWallet.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page2 : ContentPage
+    public partial class ExchangeRatesPage : ContentPage
     {
-        public Page2()
+        public ExchangeRatesPage()
         {
             InitializeComponent();
-            BindingContext = App.Container.Get<HistoryViewModel>();
-
         }
     }
 }

@@ -6,11 +6,12 @@ using System.Text;
 
 namespace SqlliteApp.Standard.Entities
 {
-    [Table("PurchaseHistory")]
-    class PurchaseHistory
+    [System.ComponentModel.DataAnnotations.Schema.Table("History")]
+    public partial class PurchaseHistory
     {
         [Key]
-        public int PurchaseHistoryId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         [Required]
         [MaxLength(128)]
@@ -18,12 +19,7 @@ namespace SqlliteApp.Standard.Entities
 
         [Required]
         [MaxLength(256)]
-
         public string Sum { get; set; }
-
-        [Required]
-        [MaxLength(256)]
-        public string Percent { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? Date { get; set; }
