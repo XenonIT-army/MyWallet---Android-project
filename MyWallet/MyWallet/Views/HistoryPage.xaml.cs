@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MyWallet
+namespace MyWallet.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page2 : ContentPage
+    public partial class HistoryPage : ContentPage
     {
-        public Page2()
+        public HistoryPage()
         {
             InitializeComponent();
             BindingContext = App.Container.Get<HistoryViewModel>();

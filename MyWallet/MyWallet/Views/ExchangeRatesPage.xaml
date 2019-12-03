@@ -6,10 +6,41 @@
              mc:Ignorable="d"
              x:Class="MyWallet.Views.ExchangeRatesPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ListView  HorizontalScrollBarVisibility="Always"   HasUnevenRows="true"  ItemsSource="{Binding RatesApi}" Margin="10"  >
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <ViewCell >
+                        <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
+
+                            <Frame.Content>
+                                <Frame   OutlineColor="Gray" BackgroundColor="BlueViolet" >
+                                    <Frame.Content>
+                                        <Grid>
+                                            <Grid >
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Сurrency}" TextColor="White" FontSize="Title"></Label>
+                                                <Label Grid.Row="1" HorizontalTextAlignment="Center" Text="{Binding BaseCurrency}" TextColor="White" FontSize="Title"></Label>
+                                                <Label Grid.Row="2" HorizontalTextAlignment="Center" Text="{Binding Buy}" TextColor="White" FontSize="Title"></Label>
+                                                <Label Grid.Row="3" HorizontalTextAlignment="Center" Text="{Binding Sale}" TextColor="White" FontSize="Title"></Label>
+                                            </Grid>
+
+                                        </Grid>
+                                    </Frame.Content>
+
+                                </Frame>
+                            </Frame.Content>
+
+
+                        </Frame>
+
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

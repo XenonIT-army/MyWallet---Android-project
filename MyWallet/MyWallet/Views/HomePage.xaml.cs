@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MyWallet
+namespace MyWallet.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : CarouselPage
+    public partial class HomePage : CarouselPage
     {
-        public Page1()
+        public HomePage()
         {
             InitializeComponent();
             BindingContext  = App.Container.Get<MainViewModel>();

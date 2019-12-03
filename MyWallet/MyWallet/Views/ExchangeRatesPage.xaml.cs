@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyWallet.ViewModel;
+using Ninject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,7 @@ namespace MyWallet.Views
         public ExchangeRatesPage()
         {
             InitializeComponent();
+            BindingContext = App.Container.Get<RatesViewModel>();
         }
     }
 }

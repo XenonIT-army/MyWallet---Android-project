@@ -4,6 +4,7 @@ using MyWallet.Model;
 using MyWallet.Moduls;
 using MyWallet.Service;
 using MyWallet.ViewModel;
+using MyWallet.Views;
 using Ninject;
 using SqlliteApp.Standard.Context;
 using SqlliteApp.Standard.Entities;

@@ -4,8 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-            xmlns:local="clr-namespace:MyWallet;assembly=MyWallet"
-             x:Class="MyWallet.MainPage"
+            xmlns:local="clr-namespace:MyWallet.Views;assembly=MyWallet"
+             x:Class=" MyWallet.Views.MainPage"
             Visual="Material"
          
            
@@ -14,18 +14,23 @@
        
        
         <x:Arguments >
-            <local:Page1 />
+            <local:HomePage />
         </x:Arguments>
     </NavigationPage>
 
     <NavigationPage Title="Schedule" Visual="Material" IconImageSource="WhiteCircle.png">
        
         <x:Arguments>
-            <local:Page2 />
+            <local:HistoryPage />
         </x:Arguments>
     </NavigationPage>
-   
 
-   
+    <NavigationPage Title="Schedule" Visual="Material" IconImageSource="WhiteCircle.png">
+
+        <x:Arguments>
+            <local:ExchangeRatesPage />
+        </x:Arguments>
+    </NavigationPage>
+
 
 </TabbedPage>
