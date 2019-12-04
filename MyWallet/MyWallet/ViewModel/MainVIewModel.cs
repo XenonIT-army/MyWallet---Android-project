@@ -26,10 +26,7 @@ namespace MyWallet.ViewModel
         {
             this.paymentService = paymentService;
             this.historyService = historyService;
-            Payments = paymentService.GetAll().ToObservableCollection();
-            EditPayments = paymentService.GetAll().ToObservableCollection();
-
-
+            GetDate();
             AllMonney = categories.GetAllMonney(payments);
             AllPercent = (100 - categories.GetPercent()).ToString();
 
@@ -111,6 +108,13 @@ namespace MyWallet.ViewModel
         {
             PopupNavigation.Instance.PushAsync(new PopupView(this));
         }
+
+        private async void GetDate()
+        {
+            Payments = (await paymentService.GetAll()).ToObservableCollection();
+            EditPayments = (await paymentService.GetAll()).ToObservableCollection();
+
+        }
         private void SaveProcent()
         {
             foreach(var i in editPayments)
@@ -151,7 +155,7 @@ namespace MyWallet.ViewModel
             PopupNavigation.Instance.PushAsync(new AddCategory(this));
         }
 
-        private void AddCategory()
+        private async void AddCategory()
         {
             PaymentCategories add = new PaymentCategories();
             add.Name = NameCategory;
@@ -160,23 +164,21 @@ namespace MyWallet.ViewModel
             Payments.Add(add);
             EditPayments.Add(add);
 
-            paymentService.Create(add);
-            paymentService.Save();
-            Payments = paymentService.GetAll().ToObservableCollection();
-            EditPayments = paymentService.GetAll().ToObservableCollection();
+            await paymentService.Create(add);
+            await paymentService.Save();
+            GetDate();
             NameCategory = "";
         }
         private void OpenSaveBox()
         {
             PopupNavigation.Instance.PushAsync(new SaveProces(this));
         }
-        private void DeleteCategory()
+        private async void DeleteCategory()
         {
           
-            paymentService.Delete(TakeOff);
-            paymentService.Save();
-            Payments = paymentService.GetAll().ToObservableCollection();
-            EditPayments = paymentService.GetAll().ToObservableCollection();
+            await paymentService.Delete(TakeOff);
+            await paymentService.Save();
+            GetDate();
         }
 
         private void OpenEditBox()
@@ -184,7 +186,7 @@ namespace MyWallet.ViewModel
             PopupNavigation.Instance.PushAsync(new EditCategorysBox(this));
         }
 
-        private void TakeOffCategory()
+        private async void TakeOffCategory()
         {
             int takeSum = Convert.ToInt32(TakeOffSum);
             int sum = (Convert.ToInt32(TakeOff.Balance) - takeSum);
@@ -197,13 +199,13 @@ namespace MyWallet.ViewModel
                     if (res.Name == TakeOff.Name)
                     {
                         res.Balance = TakeOff.Balance;
-                        paymentService.Delete(res);
-                        paymentService.Save();
-                        paymentService.Create(res);
-                        paymentService.Save();
+                        await paymentService.Delete(res);
+                        await paymentService.Save();
+                        await paymentService.Create(res);
+                        await paymentService.Save();
                         AddHisstory();
-                        historyService.Create(historyPayments);
-                        historyService.Save();
+                        await historyService.Create(historyPayments);
+                        await historyService.Save();
                     }
                 }
                 TakeOffSum = "";

@@ -5,7 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MyWallet.Views.HistoryPage"
-             BackgroundColor="Gray"
              >
     
     <ContentPage.Content>
@@ -18,24 +17,24 @@
 
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="60*"></ColumnDefinition>
-                        <ColumnDefinition Width="40*"></ColumnDefinition>
+                        <ColumnDefinition Width="65*"></ColumnDefinition>
+                        <ColumnDefinition Width="35*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="История Расходов" Grid.Column="0" TextColor="White" FontSize="Title"></Label>
-                    <Button Visual="Material" Grid.Column="1" Text="Очистить" Command="{Binding RemoveHistory}" Margin="5"></Button>
+                    <Label Text="История Расходов" Grid.Column="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="Black" FontSize="Title"></Label>
+                    <Button BorderColor="DarkGray" BorderWidth="1" Visual="Material" Grid.Column="1" Text="Очистить" Command="{Binding RemoveHistory}" Margin="5"></Button>
                 </Grid>
             
             
             
-            <ListView  BackgroundColor="Gray" Grid.Row="1" RefreshCommand="{Binding RefreshData}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefresh}"  Visual="Material" HorizontalScrollBarVisibility="Always"   HasUnevenRows="true"   ItemsSource="{Binding Histories,Mode=TwoWay}" Margin="10"  >
+            <ListView  Grid.Row="1" RefreshCommand="{Binding RefreshData}" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefresh}"  Visual="Material" HorizontalScrollBarVisibility="Always"   HasUnevenRows="true"   ItemsSource="{Binding Histories,Mode=TwoWay}" Margin="10"  >
                 <ListView.ItemTemplate>
                     <DataTemplate >
                         <ViewCell >
-                            <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
+                                <Frame Padding="20,10,20,10"  Visual="Material" >
 
                                 <Frame.Content>
-                                    <Frame   OutlineColor="Gray" BackgroundColor="BlueViolet" >
+                                    <Frame   OutlineColor="Gray" BackgroundColor="LightGreen">
                                         <Frame.Content>
                                             <Grid>
 
@@ -47,9 +46,9 @@
                                                         <RowDefinition Height="auto"></RowDefinition>
                                                         <RowDefinition Height="auto"></RowDefinition>
                                                     </Grid.RowDefinitions>
-                                                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="White" FontSize="Title"></Label>
-                                                    <Label Grid.Row="1" HorizontalTextAlignment="Center" Text="{Binding Sum}" TextColor="White" FontSize="Title"></Label>
-                                                    <Label Grid.Row="2" HorizontalTextAlignment="Center" Text="{Binding Date}" TextColor="White" FontSize="Title"></Label>
+                                                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="DarkBlue" FontSize="Title"></Label>
+                                                    <Label Grid.Row="1" HorizontalTextAlignment="Center" Text="{Binding Sum}" TextColor="Red" FontSize="Title"></Label>
+                                                    <Label Grid.Row="2" HorizontalTextAlignment="Center" Text="{Binding Date}" TextColor="Blue" FontSize="Title"></Label>
                                                 </Grid>
 
                                             </Grid>

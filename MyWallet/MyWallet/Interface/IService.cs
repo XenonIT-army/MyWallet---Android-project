@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MyWallet.Interface
 {
     public interface IService<TEntityDto>
     {
-        IEnumerable<TEntityDto> GetAll();
-        TEntityDto Get(int id);
+        Task<IEnumerable<TEntityDto>> GetAll();
+        Task<TEntityDto> Get(int id);
 
-        void UpdateRange(IEnumerable<TEntityDto> dto);
-        TEntityDto Create(TEntityDto dto);
-        void Update(TEntityDto dto);
-        void Delete(TEntityDto dto);
-        void Save();
+        Task<bool> UpdateRange(IEnumerable<TEntityDto> dto);
+        Task<TEntityDto> Create(TEntityDto dto);
+        Task<bool> Update(TEntityDto dto);
+        Task<bool> Delete(TEntityDto dto);
+        Task<bool> Save();
     }
 }

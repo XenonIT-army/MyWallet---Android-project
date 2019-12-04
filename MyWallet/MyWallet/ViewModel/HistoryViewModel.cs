@@ -18,12 +18,15 @@ namespace MyWallet.ViewModel
         public HistoryViewModel(IService<History> historyService)
         {
             this.historyService = historyService;
-            Histories = historyService.GetAll().ToObservableCollection();
-
-            RefreshData = new Command(() => { Histories = historyService.GetAll().ToObservableCollection(); IsRefresh = false; });
+            GetDate();
+            RefreshData = new Command(() => { GetDate(); IsRefresh = false; });
             RemoveHistory = new Command(() => { ClearAll(); Histories = null; });
         }
 
+        private async void GetDate()
+        {
+            Histories = (await historyService.GetAll()).ToObservableCollection();
+        }
         private void ClearAll()
         {
             foreach (var res in Histories)

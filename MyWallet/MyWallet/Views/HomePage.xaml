@@ -8,7 +8,7 @@
              NavigationPage.TitleIconImageSource="file_add.png"
               >
 
-    <ContentPage Visual="Material" BackgroundColor="Brown">
+    <ContentPage Visual="Material" BackgroundColor="DarkSlateGray">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"></RowDefinition>
@@ -90,7 +90,7 @@
 
     </ContentPage>
 
-    <ContentPage Visual="Material" BackgroundColor="DimGray">
+    <ContentPage Visual="Material" BackgroundColor="DarkSlateGray">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"></RowDefinition>
@@ -192,7 +192,7 @@
         </Grid>
     </ContentPage>
 
-    <ContentPage Visual="Material" BackgroundColor="Gray">
+    <ContentPage Visual="Material" BackgroundColor="DarkSlateGray">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"></RowDefinition>
@@ -327,8 +327,7 @@
         </Grid>
     </ContentPage>
 
-    <ContentPage Visual="Material" BackgroundColor="Brown">
-
+    <ContentPage Visual="Material" BackgroundColor="DarkSlateGray">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"></RowDefinition>

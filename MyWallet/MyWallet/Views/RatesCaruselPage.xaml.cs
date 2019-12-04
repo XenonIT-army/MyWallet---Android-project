@@ -12,9 +12,9 @@ using Xamarin.Forms.Xaml;
 namespace MyWallet.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ExchangeRatesPage : ContentPage
+    public partial class RatesCaruselPage : CarouselPage
     {
-        public ExchangeRatesPage()
+        public RatesCaruselPage()
         {
             InitializeComponent();
             BindingContext = App.Container.Get<RatesViewModel>();

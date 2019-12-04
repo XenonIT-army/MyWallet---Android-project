@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyWallet.Views.RatesCaruselPage"
+              >
+    <ContentPage>
+        <ContentPage.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*" ></RowDefinition>
+                    <RowDefinition Height="90*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15*"></ColumnDefinition>
+                        <ColumnDefinition Width="85*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="WhiteCircle.png"></Image>
+                    <Label Grid.Column="1" Text="Курс валют: ПриватБанк" FontSize="Title" TextColor="Black"></Label>
+
+                </Grid>
+
+                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" IsVisible="{Binding IsVisible}" Text="Проверьте подключение к интернету или сервис временно не доступен!" FontSize="Title" TextColor="Red"></Label>
+
+
+                <ListView Grid.Row="1"  IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshDateCommand}" IsRefreshing="{Binding IsRefresh}"  HorizontalScrollBarVisibility="Always"   HasUnevenRows="true"  ItemsSource="{Binding RatesApi}" Margin="10"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="20,10,20,10" Visual="Material" >
+
+                                    <Frame.Content>
+                                        <Frame  BackgroundColor="Black" BorderColor="Gold">
+                                            <Frame.Content>
+                                                <Grid >
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid Grid.Column="0">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Label Grid.Row="0" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Text="Валюта :" TextColor="White" FontSize="Title"></Label>
+                                                            <Label Grid.Row="1" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Text="К валюте :" TextColor="White" FontSize="Title"></Label>
+                                                            <Label Grid.Row="2" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Text="Покупка :" TextColor="White" FontSize="Title"></Label>
+                                                            <Label Grid.Row="3" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Text="Продажа :" TextColor="White" FontSize="Title"></Label>
+                                                        </Grid>
+                                                        
+                                                        <Grid Grid.Column="1">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" Text="{Binding Сurrency}" TextColor="Gold" FontSize="Title"></Label>
+                                                            <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" Text="{Binding BaseCurrency}" TextColor="Gold" FontSize="Title"></Label>
+                                                            <Label Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" Text="{Binding Buy}" TextColor="Gold" FontSize="Title"></Label>
+                                                            <Label Grid.Row="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" Text="{Binding Sale}" TextColor="Gold" FontSize="Title"></Label>
+                                                        </Grid>
+
+                                                    </Grid>
+                                                </Grid>
+                                            </Frame.Content>
+
+                                        </Frame>
+                                    </Frame.Content>
+
+
+                                </Frame>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage>
+        <ContentPage.Content>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*" ></RowDefinition>
+                    <RowDefinition Height="90*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15*"></ColumnDefinition>
+                        <ColumnDefinition Width="85*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="WhiteCircle.png"></Image>
+                    <Label Grid.Column="1" Text="Курс валют: МоноБанк" FontSize="Title" TextColor="Black"></Label>
+
+                </Grid>
+
+                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" IsVisible="{Binding IsVisible}" Text="Проверьте подключение к интернету или сервис временно не доступен!" FontSize="Title" TextColor="Red"></Label>
+
+
+                <ListView Grid.Row="1" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshDateCommand}" IsRefreshing="{Binding IsRefresh}"  HorizontalScrollBarVisibility="Always"   HasUnevenRows="true"  ItemsSource="{Binding RatesApiMonobank}" Margin="10"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="20,10,20,10"  Visual="Material">
+
+                                    <Frame.Content>
+                                        <Frame OutlineColor="Gray" BackgroundColor="Black" >
+                                            <Frame.Content>
+                                                <Grid>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid Grid.Column="0">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Label Grid.Row="0" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Text="Валюта :" TextColor="White" FontSize="Title"></Label>
+                                                            <Label Grid.Row="1" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Text="К валюте :" TextColor="White" FontSize="Title"></Label>
+                                                            <Label Grid.Row="2" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Text="Покупка :" TextColor="White" FontSize="Title"></Label>
+                                                            <Label Grid.Row="3" HorizontalTextAlignment="Start" VerticalTextAlignment="Start" Text="Продажа :" TextColor="White" FontSize="Title"></Label>
+                                                        </Grid>
+                                                        
+                                                        <Grid Grid.Column="1">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                                <RowDefinition Height="auto"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Label Grid.Row="0" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" Text="{Binding Сurrency}" TextColor="Gold" FontSize="Title"></Label>
+                                                            <Label Grid.Row="1" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" Text="{Binding BaseCurrency}" TextColor="Gold" FontSize="Title"></Label>
+                                                            <Label Grid.Row="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" Text="{Binding Buy}" TextColor="Gold" FontSize="Title"></Label>
+                                                            <Label Grid.Row="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Start" Text="{Binding Sale}" TextColor="Gold" FontSize="Title"></Label>
+                                                        </Grid>
+
+                                                    </Grid>
+                                                </Grid>
+                                            </Frame.Content>
+
+                                        </Frame>
+                                    </Frame.Content>
+
+
+                                </Frame>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </ContentPage.Content>
+    </ContentPage>
+
+</CarouselPage>

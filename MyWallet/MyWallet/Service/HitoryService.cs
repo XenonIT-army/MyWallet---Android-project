@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MyWallet.Service
 {
@@ -27,50 +28,109 @@ namespace MyWallet.Service
             mapper = config.CreateMapper();
         }
 
-        public void UpdateRange(IEnumerable<History> dto)
+        public Task<bool> UpdateRange(IEnumerable<History> dto)
         {
-            var entity = mapper.Map<IEnumerable<PurchaseHistory>>(dto);
-            uow.PurchaseHistory.UpdateRange(entity);
+            return Task.Run(() =>
+            {
+                try
+                {
+                    var entity = mapper.Map<IEnumerable<PurchaseHistory>>(dto);
+                    uow.PurchaseHistory.UpdateRange(entity);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            });
         }
 
-        public History Create(History dto)
+        public Task<History> Create(History dto)
         {
-            var entity = mapper.Map<PurchaseHistory>(dto);
-            var newEntity = uow.PurchaseHistory.Create(entity);
-            return mapper.Map<History>(newEntity);
+            return Task.Run(() =>
+            {
+                var entity = mapper.Map<PurchaseHistory>(dto);
+                var newEntity = uow.PurchaseHistory.Create(entity);
+                return mapper.Map<History>(newEntity);
+
+            });
+          
         }
 
-        public void Delete(History dto)
+        public Task<bool> Delete(History dto)
         {
-            var entity = uow.PurchaseHistory.Get(dto.Id);
-            uow.PurchaseHistory.Delete(entity);
+            return Task.Run(() =>
+            {
+                try
+                {
+                    var entity = uow.PurchaseHistory.Get(dto.Id);
+                    uow.PurchaseHistory.Delete(entity);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+               
+            });
         }
 
-        public History Get(int id)
+        public Task<History> Get(int id)
         {
-            var entity = uow.PurchaseHistory.Get(id);
-            return mapper.Map<History>(entity);
+            return Task.Run(() =>
+            {
+                var entity = uow.PurchaseHistory.Get(id);
+                return mapper.Map<History>(entity);
+            });
         }
 
-        public IEnumerable<History> GetAll()
+        public Task<IEnumerable<History>> GetAll()
         {
-            var res = uow.PurchaseHistory
-                 .GetAll()
-                 .ToList()
-                 .Select(entity => mapper.Map<History>(entity));
-            return res;
+            return Task.Run(() =>
+            {
+                var res = uow.PurchaseHistory
+                .GetAll()
+                .ToList()
+                .Select(entity => mapper.Map<History>(entity));
+                return res;
+            });
         }
 
-        public void Save()
+        public Task<bool> Save()
         {
-            uow.PurchaseHistory.Save();
-            uow.Save();
+            return Task.Run(() =>
+            {
+                try
+                {
+                    uow.PurchaseHistory.Save();
+                    uow.Save();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+               
+            });
+               
         }
 
-        public void Update(History dto)
+        public Task<bool> Update(History dto)
         {
-            var entity = mapper.Map<PurchaseHistory>(dto);
-            uow.PurchaseHistory.Update(entity);
+            return Task.Run(() =>
+            {
+                try
+                {
+                    var entity = mapper.Map<PurchaseHistory>(dto);
+                    uow.PurchaseHistory.Update(entity);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            });
+               
         }
     }
 }

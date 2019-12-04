@@ -11,24 +11,20 @@
            
              >
     <NavigationPage  Title="Schedule"  Visual="Material" IconImageSource="WhiteCircle.png">
-       
-       
         <x:Arguments >
             <local:HomePage />
         </x:Arguments>
     </NavigationPage>
 
     <NavigationPage Title="Schedule" Visual="Material" IconImageSource="WhiteCircle.png">
-       
         <x:Arguments>
             <local:HistoryPage />
         </x:Arguments>
     </NavigationPage>
 
     <NavigationPage Title="Schedule" Visual="Material" IconImageSource="WhiteCircle.png">
-
         <x:Arguments>
-            <local:ExchangeRatesPage />
+            <local:RatesCaruselPage />
         </x:Arguments>
     </NavigationPage>
 

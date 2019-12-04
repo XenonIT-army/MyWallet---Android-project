@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace MyWallet.Service
 {
@@ -29,50 +30,109 @@ namespace MyWallet.Service
         }
 
 
-        public void UpdateRange(IEnumerable<PaymentCategories> dto)
+        public Task<bool> UpdateRange(IEnumerable<PaymentCategories> dto)
         {
-                var entity = mapper.Map<IEnumerable<Payment>>(dto);
-                uow.PaymentRepository.UpdateRange(entity);
+            return Task.Run(() =>
+            {
+                try
+                {
+                    var entity = mapper.Map<IEnumerable<Payment>>(dto);
+                    uow.PaymentRepository.UpdateRange(entity);
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            });
+               
         }
 
-        public PaymentCategories Create(PaymentCategories dto)
+        public Task<PaymentCategories> Create(PaymentCategories dto)
         {
-            var entity = mapper.Map<Payment>(dto);
-            var newEntity = uow.PaymentRepository.Create(entity);
-            return mapper.Map<PaymentCategories>(newEntity);
+            return Task.Run(() =>
+            {
+
+                var entity = mapper.Map<Payment>(dto);
+                var newEntity = uow.PaymentRepository.Create(entity);
+                return mapper.Map<PaymentCategories>(newEntity);
+
+            });
         }
 
-        public void Delete(PaymentCategories dto)
+        public Task<bool> Delete(PaymentCategories dto)
         {
-            var entity = uow.PaymentRepository.Get(dto.Id);
-            uow.PaymentRepository.Delete(entity);
+            return Task.Run(() =>
+            {
+                try
+                {
+                    var entity = uow.PaymentRepository.Get(dto.Id);
+                    uow.PaymentRepository.Delete(entity);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            });
         }
 
-        public PaymentCategories Get(int id)
+        public Task<PaymentCategories> Get(int id)
         {
-            var entity = uow.PaymentRepository.Get(id);
-            return mapper.Map<PaymentCategories>(entity);
+            return Task.Run(() =>
+            {
+                var entity = uow.PaymentRepository.Get(id);
+                return mapper.Map<PaymentCategories>(entity);
+            });
         }
 
-        public IEnumerable<PaymentCategories> GetAll()
+        public Task<IEnumerable<PaymentCategories>> GetAll()
         {
-            var res = uow.PaymentRepository
-                 .GetAll()
-                 .ToList()
-                 .Select(entity => mapper.Map<PaymentCategories>(entity));
-            return res;
+            return Task.Run(() =>
+            {
+                var res = uow.PaymentRepository
+                .GetAll()
+                .ToList()
+                .Select(entity => mapper.Map<PaymentCategories>(entity));
+                return res;
+            });
         }
 
-        public void Save()
+        public Task<bool> Save()
         {
-            uow.PaymentRepository.Save();
-            uow.Save();
+            return Task.Run(() =>
+            {
+                try
+                {
+                    uow.PaymentRepository.Save();
+                    uow.Save();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+               
+            });
+               
         }
 
-        public void Update(PaymentCategories dto)
+        public Task<bool> Update(PaymentCategories dto)
         {
-            var entity = mapper.Map<Payment>(dto);
-            uow.PaymentRepository.Update(entity);
+            return Task.Run(() =>
+            {
+                try
+                {
+                    var entity = mapper.Map<Payment>(dto);
+                    uow.PaymentRepository.Update(entity);
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            });
         }
     }
 }

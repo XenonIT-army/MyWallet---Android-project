@@ -41,10 +41,10 @@
     <EmbeddedResource Update="Views\EditCategorysBox.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ExchangeRatesPage.xaml">
+    <EmbeddedResource Update="Views\PopupView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\PopupView.xaml">
+    <EmbeddedResource Update="Views\RatesCaruselPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SaveProces.xaml">
