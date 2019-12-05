@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyWallet.Abstructions;
+using MyWalletProject.Abstructions;
 using SqlliteApp.Standard.Entities;
 using System;
 using System.Collections.Generic;

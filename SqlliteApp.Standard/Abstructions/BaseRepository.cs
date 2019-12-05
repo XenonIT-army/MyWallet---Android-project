@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace MyWallet.Abstructions
+namespace MyWalletProject.Abstructions
 {
     public class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {

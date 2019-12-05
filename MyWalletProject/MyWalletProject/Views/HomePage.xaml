@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MyWalletProject.Views.HomePage"
+             NavigationPage.TitleIconImageSource="file_add.png"
+              >
+
+    <ContentPage Visual="Material" BackgroundColor="DarkSlateGray">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="76*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"></ColumnDefinition>
+                    <ColumnDefinition Width="70*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"  Source="assistant.png" ></Image>
+                <Label VerticalOptions="Center" Grid.Column="1" FontSize="Title" TextColor="White" Text="Выбери категорию и зафиксируй расходы!"></Label>
+
+
+            </Grid>
+
+            <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"  Source="WhiteCircle.png" ></Image>
+                <Image Grid.Column="1" Source="WhiteCircle.png" Opacity="0.5" ></Image>
+                <Image Grid.Column="2"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
+                <Image Grid.Column="3"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
+
+
+            </Grid>
+
+            <ListView    x:Name="ListView1" Visual="Material" HorizontalScrollBarVisibility="Always" SelectedItem ="{Binding TakeOff,Mode=TwoWay}"  HasUnevenRows="true"  Grid.Row="2" ItemsSource="{Binding Payments}" Margin="10"  >
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <ViewCell >
+                            <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
+
+                                <Frame.Content>
+                                    <Frame   OutlineColor="Gray" BackgroundColor="#FEEECC" >
+                                        <Frame.Content>
+                                            <Grid>
+
+
+
+                                                <Grid >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"></RowDefinition>
+                                                        <RowDefinition Height="auto"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="DarkSlateGray" FontSize="Title"></Label>
+                                                    <StackLayout Grid.Row="1" IsVisible="{Binding IsVisible}">
+                                                        <Button  BindingContext="{Binding Source={x:Reference ListView1}, Path=BindingContext}"  
+                                                         Command="{Binding OpenTakeOffBoxCommand }" Text="{Binding TakeOff.Name}"
+                                                             >
+                                                    </Button>
+                                                    </StackLayout>
+                                                </Grid>
+
+                                            </Grid>
+                                        </Frame.Content>
+
+                                    </Frame>
+                                </Frame.Content>
+
+
+                            </Frame>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
+
+    </ContentPage>
+
+    <ContentPage Visual="Material" BackgroundColor="DarkSlateGray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="76*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="75*"></RowDefinition>
+                    <RowDefinition Height="25*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60*"></ColumnDefinition>
+                        <ColumnDefinition Width="40*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Label VerticalOptions="Center"  Margin="20,0,0,0" Grid.Column="0"  Text="{Binding AllMonney,Mode=TwoWay}" TextColor="Gold" FontSize="45"></Label>
+                    <Button Command="{Binding OpenBoxCommand}" BorderWidth="1"  Visual="Material" Margin="10" 
+                          CornerRadius="100"   Grid.Column="1" ImageSource="wallet.png"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition ></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label  Margin="20,0,0,0"  Grid.Column="0" Text="Баланс кошелька"  TextColor="White" FontSize="18"></Label>
+
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"  Source="WhiteCircle.png" Opacity="0.5"></Image>
+                <Image Grid.Column="1" Source="WhiteCircle.png" ></Image>
+                <Image Grid.Column="2"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
+                <Image Grid.Column="3"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
+
+            </Grid>
+
+            <ListView Visual="Material"   HasUnevenRows="true"  Grid.Row="2" ItemsSource="{Binding Payments}" Margin="10"  >
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <ViewCell >
+
+                            <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
+
+                                <Frame.Content>
+                                    <Frame   OutlineColor="Gray" BackgroundColor="#FEEECC" >
+                                        <Frame.Content>
+
+
+                                            <Grid HeightRequest="60">
+
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition ></RowDefinition>
+                                                    <RowDefinition ></RowDefinition>
+                                                </Grid.RowDefinitions>
+
+                                                <Grid Grid.Row="0" >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="30*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="70*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image  Grid.Column="0" Source="WhiteCircle.png"></Image>
+                                                    <Label Grid.Column="1"  Text="{Binding Name,Mode=TwoWay}"  FontSize="Subtitle" TextColor="DarkSlateGray"></Label>
+
+                                                </Grid>
+                                                <Grid Grid.Row="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="30*"></ColumnDefinition>
+                                                        <ColumnDefinition  Width="70*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Grid.Column="0" VerticalTextAlignment="End" Text="Остаток : "  TextColor="DarkSlateGray" FontSize="Subtitle"></Label>
+                                                    <Label Grid.Column="1"  FontSize="Title"  HorizontalTextAlignment="Start" Text="{Binding Balance,Mode=TwoWay}" TextColor="DarkGoldenrod"></Label>
+                                                </Grid>
+                                            </Grid>
+
+                                        </Frame.Content>
+                                    </Frame>
+                                </Frame.Content>
+                            </Frame>
+
+
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Visual="Material" BackgroundColor="DarkSlateGray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="76*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"  Source="WhiteCircle.png" Opacity="0.5"></Image>
+                <Image Grid.Column="1" Source="WhiteCircle.png" Opacity="0.5"></Image>
+                <Image Grid.Column="2"  Source="WhiteCircle.png"></Image>
+                <Image Grid.Column="3" Source="WhiteCircle.png" Opacity="0.5"></Image>
+
+            </Grid>
+
+            <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30*"></ColumnDefinition>
+                    <ColumnDefinition Width="70*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0"  Source="assistant2.png" ></Image>
+                <Label VerticalOptions="Center" TextColor="White" FontSize="Title" Grid.Column="1"  Text="Распредели % от общей суммы по категориям!" HorizontalOptions="Center"></Label>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition  Height="20*"></RowDefinition>
+                    <RowDefinition  Height="80*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" >
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60*"></RowDefinition>
+                            <RowDefinition  Height="40*"></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition ></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                            <Button BorderWidth="0" Text="Сохранить"  Visual="Material" HorizontalOptions="Center" Command="{Binding OpenSaveBoxCommand}"
+                             Grid.Column="0" />
+                            <Button BorderWidth="1" Text="Сбросить" Visual="Material"  HorizontalOptions="Center" Command="{Binding OpenEditCategorysBox}"
+                              Grid.Column="1" />
+
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" HorizontalOptions="End" VerticalTextAlignment="Center" Text="Осталось распределить :" FontSize="Subtitle"  TextColor="White"></Label>
+                            <Label Grid.Column="1" HorizontalOptions="Start" VerticalTextAlignment="Center"  Text="{Binding AllPercent}" FontSize="Subtitle" TextColor="DarkGoldenrod"></Label>
+                            <Label Grid.Column="2" HorizontalOptions="Start"  VerticalTextAlignment="Center" Text="%" FontSize="Subtitle"  TextColor="White"></Label>
+                        </Grid>
+                            
+                           
+                    </Grid>
+                </Grid>
+
+                <ListView  Visual="Material"   HasUnevenRows="true"  Grid.Row="1" ItemsSource="{Binding EditPayments}"  Margin="10"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate >
+
+                            <ViewCell >
+
+
+                                <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
+
+                                    <Frame.Content>
+                                        <Frame   OutlineColor="Gray" BackgroundColor="#FEEECC" >
+                                            <Frame.Content>
+                                                <Grid HeightRequest="60">
+
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="30*"></RowDefinition>
+                                                        <RowDefinition Height="70*"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+
+                                                    <Grid Grid.Row="0" >
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                            <ColumnDefinition></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image  Grid.Column="0" Source="WhiteCircle.png"></Image>
+                                                        <Label Grid.Column="1" HorizontalTextAlignment="Start" Text="{Binding Name,Mode=TwoWay}" TextColor="DarkSlateGray"></Label>
+
+                                                    </Grid>
+                                                    <Grid Grid.Row="1">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="70*"></ColumnDefinition>
+                                                            <ColumnDefinition Width="30*"></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <Label Grid.Column="1" HorizontalOptions="Center" FontSize="Title" HorizontalTextAlignment="Start" Text="{Binding Percent,Mode=TwoWay}" TextColor="DarkGoldenrod"></Label>
+                                                        
+                                                        <Stepper   Visual="Material" Grid.Column="0"  Minimum="0" 
+                                                                   Increment="1" Value="{Binding Percent,Mode=TwoWay}"></Stepper>
+                                                    </Grid>
+                                                </Grid>
+                                            </Frame.Content>
+
+                                        </Frame>
+                                    </Frame.Content>
+
+
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+            </Grid>
+
+
+
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Visual="Material" BackgroundColor="DarkSlateGray">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"></RowDefinition>
+                <RowDefinition Height="4*"></RowDefinition>
+                <RowDefinition Height="76*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="27*"></ColumnDefinition>
+                    <ColumnDefinition Width="80*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" BorderWidth="2"  Visual="Material"   Margin="10" 
+                          CornerRadius="100"   ImageSource="add.png" Command="{Binding OpenAddCategoryCommand}" ></Button>
+                <Label VerticalOptions="Center" Grid.Column="1" FontSize="Title" TextColor="White" Text="Добавь новую категорию или удали не нужную!"></Label>
+
+
+            </Grid>
+
+            <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="3"  Source="WhiteCircle.png" ></Image>
+                <Image Grid.Column="0" Source="WhiteCircle.png" Opacity="0.5" ></Image>
+                <Image Grid.Column="1"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
+                <Image Grid.Column="2"  Source="WhiteCircle.png" Opacity="0.5" ></Image>
+
+
+            </Grid>
+
+            <ListView x:Name="ListView2" Visual="Material" HorizontalScrollBarVisibility="Always" SelectedItem ="{Binding TakeOff,Mode=TwoWay}"  HasUnevenRows="true"  Grid.Row="2" ItemsSource="{Binding Payments}" Margin="10"  >
+                <ListView.ItemTemplate>
+                    <DataTemplate >
+                        <ViewCell >
+                            <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
+
+                                <Frame.Content>
+                                    <Frame   OutlineColor="Gray" BackgroundColor="#FEEECC" >
+                                        <Frame.Content>
+                                            <Grid>
+
+
+
+                                                <Grid >
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*"></RowDefinition>
+                                                        <RowDefinition Height="auto"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="DarkSlateGray" FontSize="Title"></Label>
+                                                    <StackLayout Grid.Row="1" IsVisible="{Binding IsVisible}">
+                                                        <Button  BindingContext="{Binding Source={x:Reference ListView2}, Path=BindingContext}"  
+                                                         Command="{Binding DeleteCategoryCommand }" Text="Delete category" BackgroundColor="White"
+                                                             >
+                                                        </Button>
+                                                    </StackLayout>
+                                                </Grid>
+
+                                            </Grid>
+                                        </Frame.Content>
+
+                                    </Frame>
+                                </Frame.Content>
+
+
+                            </Frame>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
+
+    </ContentPage>
+</CarouselPage>
