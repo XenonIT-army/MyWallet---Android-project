@@ -18,8 +18,7 @@ namespace MyWallet.Views
         public MainPage()
         {
             InitializeComponent();
-          
-           
+
             NavigationPage.SetHasNavigationBar(this, false);
             this.On<Xamarin.Forms.PlatformConfiguration.Android>().SetIsSwipePagingEnabled(false);
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);

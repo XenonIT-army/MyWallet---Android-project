@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" BackgroundColor="DodgerBlue" Margin="0,0,10,0" IsVisible="{Binding IsEnabled}" Command="{Binding SaveProcentCommand}"
                 FontSize="Subtitle"
-                Text="Добавить"
+                Text="Сохранить"
                 TextColor="White" />
             <Button Grid.Column="1" BackgroundColor="DodgerBlue" Command="{Binding CloseBoxMesage}" Margin="10,0,0,0"
                 FontSize="Subtitle"

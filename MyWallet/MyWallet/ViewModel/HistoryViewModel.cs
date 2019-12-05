@@ -23,6 +23,8 @@ namespace MyWallet.ViewModel
             RemoveHistory = new Command(() => { ClearAll(); Histories = null; });
         }
 
+
+        #region methods
         private async void GetDate()
         {
             Histories = (await historyService.GetAll()).ToObservableCollection();
@@ -30,23 +32,22 @@ namespace MyWallet.ViewModel
         private void ClearAll()
         {
             foreach (var res in Histories)
-            { 
+            {
                 historyService.Delete(res);
                 historyService.Save();
             }
         }
-        public ICommand RefreshData { private set; get; }
+        #endregion
 
-        public ICommand RemoveHistory { private set; get; }
-
+        #region properties
         public ObservableCollection<History> Histories
         {
             get => histories;
             set
             {
-                
-                    histories = value;
-                    Notify();
+
+                histories = value;
+                Notify();
 
             }
         }
@@ -66,5 +67,16 @@ namespace MyWallet.ViewModel
             }
 
         }
+
+        #endregion
+
+        #region commands
+        public ICommand RefreshData { private set; get; }
+
+        public ICommand RemoveHistory { private set; get; }
+        #endregion
+
+
+
     }
 }

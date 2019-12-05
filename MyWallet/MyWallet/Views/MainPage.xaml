@@ -10,19 +10,19 @@
          
            
              >
-    <NavigationPage  Title="Schedule"  Visual="Material" IconImageSource="WhiteCircle.png">
+    <NavigationPage  Title="Home"  Visual="Material" IconImageSource="home.png">
         <x:Arguments >
             <local:HomePage />
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="Schedule" Visual="Material" IconImageSource="WhiteCircle.png">
+    <NavigationPage Title="History" Visual="Material" IconImageSource="history.png">
         <x:Arguments>
             <local:HistoryPage />
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="Schedule" Visual="Material" IconImageSource="WhiteCircle.png">
+    <NavigationPage Title="Bank Rate" Visual="Material" IconImageSource="currency.png">
         <x:Arguments>
             <local:RatesCaruselPage />
         </x:Arguments>

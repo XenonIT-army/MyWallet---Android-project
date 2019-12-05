@@ -15,12 +15,19 @@ namespace MyWallet.ViewModel
         RatesManager wm = new RatesManager();
         ObservableCollection<RatesPrivatBank> ratesApi = new ObservableCollection<RatesPrivatBank>();
         ObservableCollection<RatesMonobank> ratesApiMonobank = new ObservableCollection<RatesMonobank>();
-        
+        private bool isVisible = false;
+        private bool isRefresh = false;
         public RatesViewModel()
         {
             GetRates();
             RefreshDateCommand = new Command(() => { IsRefresh = true; GetRates(); });
         }
+
+        #region commands
+        public ICommand RefreshDateCommand { private set; get; }
+        #endregion
+
+        #region methods
         private async void GetRates()
         {
             try
@@ -38,8 +45,9 @@ namespace MyWallet.ViewModel
                 IsRefresh = false;
             }
         }
-        public ICommand RefreshDateCommand { private set; get; }
+        #endregion
 
+        #region properties
         public ObservableCollection<RatesPrivatBank> RatesApi
         {
             get => ratesApi;
@@ -59,7 +67,6 @@ namespace MyWallet.ViewModel
             }
         }
 
-        private bool isVisible = false;
         public bool IsVisible
         {
             get => isVisible;
@@ -70,7 +77,6 @@ namespace MyWallet.ViewModel
             }
         }
 
-        private bool isRefresh = false;
         public bool IsRefresh
         {
             get => isRefresh;
@@ -80,5 +86,8 @@ namespace MyWallet.ViewModel
                 Notify();
             }
         }
+        #endregion
+       
+        
     }
 }

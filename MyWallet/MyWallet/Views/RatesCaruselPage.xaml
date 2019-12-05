@@ -11,22 +11,35 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*" ></RowDefinition>
-                    <RowDefinition Height="90*"></RowDefinition>
+                    <RowDefinition Height="4*" ></RowDefinition>
+                    <RowDefinition Height="86*"></RowDefinition>
                 </Grid.RowDefinitions>
+
+                <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0"  Source="WhiteCircle.png" BackgroundColor="Black"></Image>
+                    <Image Grid.Column="1" Source="WhiteCircle.png" BackgroundColor="Black" Opacity="0.5" ></Image>
+
+
+                </Grid>
+
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15*"></ColumnDefinition>
                         <ColumnDefinition Width="85*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="WhiteCircle.png"></Image>
-                    <Label Grid.Column="1" Text="Курс валют: ПриватБанк" FontSize="Title" TextColor="Black"></Label>
-
+                    <Image Grid.Column="0" Source="privatbank.png"></Image>
+                    <Label Grid.Column="1" Text="Курс валют: ПриватБанк" VerticalTextAlignment="Center" FontSize="Title" TextColor="Black"></Label>
                 </Grid>
 
-                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" IsVisible="{Binding IsVisible}" Text="Проверьте подключение к интернету или сервис временно не доступен!" FontSize="Title" TextColor="Red"></Label>
+                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="2" IsVisible="{Binding IsVisible}" Text="Проверьте подключение к интернету или сервис временно не доступен!" FontSize="Title" TextColor="Red"></Label>
 
 
-                <ListView Grid.Row="1"  IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshDateCommand}" IsRefreshing="{Binding IsRefresh}"  HorizontalScrollBarVisibility="Always"   HasUnevenRows="true"  ItemsSource="{Binding RatesApi}" Margin="10"  >
+                <ListView Grid.Row="2"  IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshDateCommand}" IsRefreshing="{Binding IsRefresh}"  HorizontalScrollBarVisibility="Always"   HasUnevenRows="true"  ItemsSource="{Binding RatesApi}" Margin="10"  >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -91,22 +104,36 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*" ></RowDefinition>
-                    <RowDefinition Height="90*"></RowDefinition>
+                    <RowDefinition Height="4*" ></RowDefinition>
+                    <RowDefinition Height="86*"></RowDefinition>
                 </Grid.RowDefinitions>
+                
+                <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0"  Source="WhiteCircle.png" BackgroundColor="Black" Opacity="0.5"></Image>
+                    <Image Grid.Column="1" Source="WhiteCircle.png" BackgroundColor="Black"  ></Image>
+
+
+                </Grid>
+                
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="15*"></ColumnDefinition>
                         <ColumnDefinition Width="85*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="WhiteCircle.png"></Image>
-                    <Label Grid.Column="1" Text="Курс валют: МоноБанк" FontSize="Title" TextColor="Black"></Label>
+                    <Image Grid.Column="0" Source="monobank.png"></Image>
+                    <Label Grid.Column="1" Text="Курс валют: МоноБанк" VerticalOptions="Center" FontSize="Title" TextColor="Black"></Label>
 
                 </Grid>
 
-                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="1" IsVisible="{Binding IsVisible}" Text="Проверьте подключение к интернету или сервис временно не доступен!" FontSize="Title" TextColor="Red"></Label>
+                <Label VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Grid.Row="2" IsVisible="{Binding IsVisible}" Text="Проверьте подключение к интернету или сервис временно не доступен!" FontSize="Title" TextColor="Red"></Label>
 
 
-                <ListView Grid.Row="1" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshDateCommand}" IsRefreshing="{Binding IsRefresh}"  HorizontalScrollBarVisibility="Always"   HasUnevenRows="true"  ItemsSource="{Binding RatesApiMonobank}" Margin="10"  >
+                <ListView Grid.Row="2" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshDateCommand}" IsRefreshing="{Binding IsRefresh}"  HorizontalScrollBarVisibility="Always"   HasUnevenRows="true"  ItemsSource="{Binding RatesApiMonobank}" Margin="10"  >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>

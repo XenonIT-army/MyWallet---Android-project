@@ -9,6 +9,7 @@
               >
 
     <ContentPage Visual="Material" BackgroundColor="DarkSlateGray">
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"></RowDefinition>
@@ -22,8 +23,8 @@
                     <ColumnDefinition Width="70*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0"  Source="WhiteCircle.png" ></Image>
-                <Label VerticalOptions="Center" Grid.Column="1" FontSize="Title" Text="Выбери категорию и зафиксируй расходы!"></Label>
+                <Image Grid.Column="0"  Source="assistant.png" ></Image>
+                <Label VerticalOptions="Center" Grid.Column="1" FontSize="Title" TextColor="White" Text="Выбери категорию и зафиксируй расходы!"></Label>
 
 
             </Grid>
@@ -44,14 +45,14 @@
 
             </Grid>
 
-            <ListView x:Name="ListView1" Visual="Material" HorizontalScrollBarVisibility="Always" SelectedItem ="{Binding TakeOff,Mode=TwoWay}"  HasUnevenRows="true"  Grid.Row="2" ItemsSource="{Binding Payments}" Margin="10"  >
+            <ListView    x:Name="ListView1" Visual="Material" HorizontalScrollBarVisibility="Always" SelectedItem ="{Binding TakeOff,Mode=TwoWay}"  HasUnevenRows="true"  Grid.Row="2" ItemsSource="{Binding Payments}" Margin="10"  >
                 <ListView.ItemTemplate>
                     <DataTemplate >
                         <ViewCell >
                             <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
 
                                 <Frame.Content>
-                                    <Frame   OutlineColor="Gray" BackgroundColor="BlueViolet" >
+                                    <Frame   OutlineColor="Gray" BackgroundColor="#FEEECC" >
                                         <Frame.Content>
                                             <Grid>
 
@@ -62,7 +63,7 @@
                                                         <RowDefinition Height="*"></RowDefinition>
                                                         <RowDefinition Height="auto"></RowDefinition>
                                                     </Grid.RowDefinitions>
-                                                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="White" FontSize="Title"></Label>
+                                                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="DarkSlateGray" FontSize="Title"></Label>
                                                     <StackLayout Grid.Row="1" IsVisible="{Binding IsVisible}">
                                                         <Button  BindingContext="{Binding Source={x:Reference ListView1}, Path=BindingContext}"  
                                                          Command="{Binding OpenTakeOffBoxCommand }" Text="{Binding TakeOff.Name}"
@@ -105,13 +106,13 @@
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80*"></ColumnDefinition>
-                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                        <ColumnDefinition Width="60*"></ColumnDefinition>
+                        <ColumnDefinition Width="40*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-                    <Label VerticalOptions="Center"  Margin="20,0,0,0" Grid.Column="0"  Text="{Binding AllMonney,Mode=TwoWay}" TextColor="White" FontSize="45"></Label>
-                    <Button Command="{Binding OpenBoxCommand}" BorderWidth="1"  Visual="Material" BackgroundColor="Brown" Margin="10" 
-                          CornerRadius="100"   Grid.Column="1" ImageSource="WhiteCircle.png"/>
+                    <Label VerticalOptions="Center"  Margin="20,0,0,0" Grid.Column="0"  Text="{Binding AllMonney,Mode=TwoWay}" TextColor="Gold" FontSize="45"></Label>
+                    <Button Command="{Binding OpenBoxCommand}" BorderWidth="1"  Visual="Material" Margin="10" 
+                          CornerRadius="100"   Grid.Column="1" ImageSource="wallet.png"/>
                 </Grid>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
@@ -147,7 +148,7 @@
                             <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
 
                                 <Frame.Content>
-                                    <Frame   OutlineColor="Gray" BackgroundColor="Gold" >
+                                    <Frame   OutlineColor="Gray" BackgroundColor="#FEEECC" >
                                         <Frame.Content>
 
 
@@ -164,7 +165,7 @@
                                                         <ColumnDefinition Width="70*"></ColumnDefinition>
                                                     </Grid.ColumnDefinitions>
                                                     <Image  Grid.Column="0" Source="WhiteCircle.png"></Image>
-                                                    <Label Grid.Column="1"  Text="{Binding Name,Mode=TwoWay}"  FontSize="Subtitle" TextColor="White"></Label>
+                                                    <Label Grid.Column="1"  Text="{Binding Name,Mode=TwoWay}"  FontSize="Subtitle" TextColor="DarkSlateGray"></Label>
 
                                                 </Grid>
                                                 <Grid Grid.Row="1">
@@ -172,8 +173,8 @@
                                                         <ColumnDefinition Width="30*"></ColumnDefinition>
                                                         <ColumnDefinition  Width="70*"></ColumnDefinition>
                                                     </Grid.ColumnDefinitions>
-                                                    <Label Grid.Column="0" VerticalTextAlignment="End" Text="Остаток : "  TextColor="White" FontSize="Subtitle"></Label>
-                                                    <Label Grid.Column="1"  FontSize="Title"  HorizontalTextAlignment="Start" Text="{Binding Balance,Mode=TwoWay}" TextColor="White"></Label>
+                                                    <Label Grid.Column="0" VerticalTextAlignment="End" Text="Остаток : "  TextColor="DarkSlateGray" FontSize="Subtitle"></Label>
+                                                    <Label Grid.Column="1"  FontSize="Title"  HorizontalTextAlignment="Start" Text="{Binding Balance,Mode=TwoWay}" TextColor="DarkGoldenrod"></Label>
                                                 </Grid>
                                             </Grid>
 
@@ -221,8 +222,8 @@
                     <ColumnDefinition Width="70*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Image Grid.Column="0"  Source="WhiteCircle.png" ></Image>
-                <Label VerticalOptions="Center" TextColor="White" FontSize="Title" Grid.Column="1"  Text="Распредели в % деньги по категориям!"></Label>
+                <Image Grid.Column="0"  Source="assistant2.png" ></Image>
+                <Label VerticalOptions="Center" TextColor="White" FontSize="Title" Grid.Column="1"  Text="Распредели % от общей суммы по категориям!" HorizontalOptions="Center"></Label>
             </Grid>
 
             <Grid Grid.Row="2">
@@ -243,27 +244,26 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition ></ColumnDefinition>
                                 <ColumnDefinition ></ColumnDefinition>
-                                <ColumnDefinition ></ColumnDefinition>
 
                             </Grid.ColumnDefinitions>
-                            <Label Grid.Column="0" HorizontalOptions="Start" Text="Осталось распределить:" FontSize="Subtitle"  TextColor="White"></Label>
-                            <Button BorderWidth="1"  Visual="Material" BackgroundColor="Brown" Margin="5,0,5,0" Command="{Binding OpenSaveBoxCommand}"
-                             Grid.Column="1" />
-                            <Button BorderWidth="1"  Visual="Material" BackgroundColor="Brown" Margin="5,0,5,0" Command="{Binding OpenEditCategorysBox}"
-                              Grid.Column="2" />
+                            <Button BorderWidth="0" Text="Сохранить"  Visual="Material" HorizontalOptions="Center" Command="{Binding OpenSaveBoxCommand}"
+                             Grid.Column="0" />
+                            <Button BorderWidth="1" Text="Сбросить" Visual="Material"  HorizontalOptions="Center" Command="{Binding OpenEditCategorysBox}"
+                              Grid.Column="1" />
 
                         </Grid>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition ></ColumnDefinition>
-                                <ColumnDefinition ></ColumnDefinition>
-                                <ColumnDefinition ></ColumnDefinition>
+                                <ColumnDefinition Width="50*"></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-
-                            <Label  Grid.Column="0" HorizontalOptions="Center" Text="{Binding AllPercent}" FontSize="Subtitle" TextColor="White"></Label>
-                            <Label Grid.Column="1" HorizontalOptions="Center" Text="Save" FontSize="Subtitle" TextColor="White"></Label>
-                            <Label Grid.Column="2" HorizontalOptions="Center" Text="Edit" FontSize="Subtitle" TextColor="White"></Label>
+                            <Label Grid.Column="0" HorizontalOptions="End" VerticalTextAlignment="Center" Text="Осталось распределить :" FontSize="Subtitle"  TextColor="White"></Label>
+                            <Label Grid.Column="1" HorizontalOptions="Start" VerticalTextAlignment="Center"  Text="{Binding AllPercent}" FontSize="Subtitle" TextColor="DarkGoldenrod"></Label>
+                            <Label Grid.Column="2" HorizontalOptions="Start"  VerticalTextAlignment="Center" Text="%" FontSize="Subtitle"  TextColor="White"></Label>
                         </Grid>
+                            
+                           
                     </Grid>
                 </Grid>
 
@@ -277,7 +277,7 @@
                                 <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
 
                                     <Frame.Content>
-                                        <Frame   OutlineColor="Gray" BackgroundColor="Gold" >
+                                        <Frame   OutlineColor="Gray" BackgroundColor="#FEEECC" >
                                             <Frame.Content>
                                                 <Grid HeightRequest="60">
 
@@ -292,7 +292,7 @@
                                                             <ColumnDefinition></ColumnDefinition>
                                                         </Grid.ColumnDefinitions>
                                                         <Image  Grid.Column="0" Source="WhiteCircle.png"></Image>
-                                                        <Label Grid.Column="1" HorizontalTextAlignment="Start" Text="{Binding Name,Mode=TwoWay}" TextColor="White"></Label>
+                                                        <Label Grid.Column="1" HorizontalTextAlignment="Start" Text="{Binding Name,Mode=TwoWay}" TextColor="DarkSlateGray"></Label>
 
                                                     </Grid>
                                                     <Grid Grid.Row="1">
@@ -301,9 +301,9 @@
                                                             <ColumnDefinition Width="30*"></ColumnDefinition>
                                                         </Grid.ColumnDefinitions>
 
-                                                        <Label Grid.Column="1" HorizontalOptions="Center" FontSize="Title" HorizontalTextAlignment="Start" Text="{Binding Percent,Mode=TwoWay}" TextColor="White"></Label>
+                                                        <Label Grid.Column="1" HorizontalOptions="Center" FontSize="Title" HorizontalTextAlignment="Start" Text="{Binding Percent,Mode=TwoWay}" TextColor="DarkGoldenrod"></Label>
                                                         
-                                                        <Stepper   Visual="Material" Grid.Column="0"  Minimum="0"   
+                                                        <Stepper   Visual="Material" Grid.Column="0"  Minimum="0" 
                                                                    Increment="1" Value="{Binding Percent,Mode=TwoWay}"></Stepper>
                                                     </Grid>
                                                 </Grid>
@@ -337,12 +337,12 @@
 
             <Grid Grid.Row="0" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                    <ColumnDefinition Width="27*"></ColumnDefinition>
                     <ColumnDefinition Width="80*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" BorderWidth="1"  Visual="Material" BackgroundColor="Brown" Margin="10" 
-                          CornerRadius="100"   ImageSource="WhiteCircle.png" Command="{Binding OpenAddCategoryCommand}" ></Button>
+                <Button Grid.Column="0" BorderWidth="2"  Visual="Material"   Margin="10" 
+                          CornerRadius="100"   ImageSource="add.png" Command="{Binding OpenAddCategoryCommand}" ></Button>
                 <Label VerticalOptions="Center" Grid.Column="1" FontSize="Title" TextColor="White" Text="Добавь новую категорию или удали не нужную!"></Label>
 
 
@@ -371,7 +371,7 @@
                             <Frame Padding="1,1,1,1" Margin="5" Visual="Material" >
 
                                 <Frame.Content>
-                                    <Frame   OutlineColor="Gray" BackgroundColor="BlueViolet" >
+                                    <Frame   OutlineColor="Gray" BackgroundColor="#FEEECC" >
                                         <Frame.Content>
                                             <Grid>
 
@@ -382,10 +382,10 @@
                                                         <RowDefinition Height="*"></RowDefinition>
                                                         <RowDefinition Height="auto"></RowDefinition>
                                                     </Grid.RowDefinitions>
-                                                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="White" FontSize="Title"></Label>
+                                                    <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="DarkSlateGray" FontSize="Title"></Label>
                                                     <StackLayout Grid.Row="1" IsVisible="{Binding IsVisible}">
                                                         <Button  BindingContext="{Binding Source={x:Reference ListView2}, Path=BindingContext}"  
-                                                         Command="{Binding DeleteCategoryCommand }" Text="Delete category"
+                                                         Command="{Binding DeleteCategoryCommand }" Text="Delete category" BackgroundColor="White"
                                                              >
                                                         </Button>
                                                     </StackLayout>
