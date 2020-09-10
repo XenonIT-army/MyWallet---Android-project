@@ -65,7 +65,7 @@
                                                     </Grid.RowDefinitions>
                                                     <Label Grid.Row="0" HorizontalTextAlignment="Center" Text="{Binding Name}" TextColor="DarkSlateGray" FontSize="Title"></Label>
                                                     <StackLayout Grid.Row="1" IsVisible="{Binding IsVisible}">
-                                                        <Button  BindingContext="{Binding Source={x:Reference ListView1}, Path=BindingContext}"  
+                                                        <Button AutomationId="Button"  BindingContext="{Binding Source={x:Reference ListView1}, Path=BindingContext}"  
                                                          Command="{Binding OpenTakeOffBoxCommand }" Text="{Binding TakeOff.Name}"
                                                              >
                                                     </Button>
@@ -246,7 +246,7 @@
                                 <ColumnDefinition ></ColumnDefinition>
 
                             </Grid.ColumnDefinitions>
-                            <Button BorderWidth="0" Text="Сохранить"  Visual="Material" HorizontalOptions="Center" Command="{Binding OpenSaveBoxCommand}"
+                            <Button AutomationId="ButtonSave" BorderWidth="0" Text="Сохранить"  Visual="Material" HorizontalOptions="Center" Command="{Binding OpenSaveBoxCommand}"
                              Grid.Column="0" />
                             <Button BorderWidth="1" Text="Сбросить" Visual="Material"  HorizontalOptions="Center" Command="{Binding OpenEditCategorysBox}"
                               Grid.Column="1" />

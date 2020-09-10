@@ -14,7 +14,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -35,14 +35,35 @@
       <Version>3.4.1</Version>
     </PackageReference>
     <PackageReference Include="NUnit" Version="3.12.0" />
-    <PackageReference Include="Xamarin.UITest" Version="3.0.5" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
-  </ItemGroup>
-  <ItemGroup>
+    <PackageReference Include="Xamarin.UITest">
+      <Version>3.0.7</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tests.cs" />
     <Compile Include="AppInitializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyWalletProject\MyWalletProject.Android\MyWalletProject.Android.csproj">
+      <Project>{4ed69949-f40f-4493-9b4c-b34fc1354e7a}</Project>
+      <Name>MyWalletProject.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWalletProject\MyWalletProject.iOS\MyWalletProject.iOS.csproj">
+      <Project>{51c21d5e-e2c3-4c70-b77f-1586a0a2874c}</Project>
+      <Name>MyWalletProject.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyWalletProject\MyWalletProject\MyWalletProject.csproj">
+      <Project>{54a94a74-5e29-4c5b-80b9-c3bbe7ee126f}</Project>
+      <Name>MyWalletProject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlliteApp.Standard\SqlliteApp.Standard.csproj">
+      <Project>{801e51f0-d244-4c71-bffb-a19bd77864b3}</Project>
+      <Name>SqlliteApp.Standard</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

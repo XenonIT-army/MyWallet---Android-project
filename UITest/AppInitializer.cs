@@ -10,7 +10,10 @@ namespace UITest
         {
             if (platform == Platform.Android)
             {
-                return ConfigureApp.Android.StartApp();
+                return ConfigureApp
+                    .Android
+                    .InstalledApp("com.companyname.mywalletproject")
+                    .StartApp();
             }
 
             return ConfigureApp.iOS.StartApp();
