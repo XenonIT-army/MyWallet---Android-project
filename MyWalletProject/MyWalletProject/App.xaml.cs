@@ -1,4 +1,7 @@
-﻿using MyWalletProject.Moduls;
+﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using MyWalletProject.Moduls;
 using MyWalletProject.Views;
 using Ninject;
 using System;
@@ -24,6 +27,10 @@ namespace MyWalletProject
 
         protected override void OnStart()
         {
+            AppCenter.Start("android=10338f9c-5292-4d3c-b47e-6bb7548fcbf4;" +
+                  "uwp={Your UWP App secret here};" +
+                  "ios={Your iOS App secret here}",
+                  typeof(Analytics), typeof(Crashes));
             // Handle when your app starts
         }
 
